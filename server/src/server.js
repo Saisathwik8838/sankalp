@@ -13,7 +13,7 @@ dotenv.config();
 export const app = express();
 const PORT = process.env.PORT || 3005;
 const rawOrigins = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
-const allowedOrigins = rawOrigins.split(',').map(s => s.trim());
+const allowedOrigins = rawOrigins.split(',').map(s => s.trim().replace(/\/$/, ''));
 
 // Security headers via Helmet
 app.use(helmet({
@@ -23,7 +23,11 @@ app.use(helmet({
 // CORS strictly scoped to client origin
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app')
+    ) {
       callback(null, true);
     } else {
       callback(null, true); // Dev flexible fallback
@@ -45,17 +49,18 @@ app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     service: 'Sankalp Devotional Discipline API',
+    runtime: process.env.VERCEL ? 'vercel-serverless' : 'node-server',
   });
 });
 
-// Mount Routes
-app.use('/api/auth', authLimiter, authRouter);
-app.use('/api', syncRouter);
+// Mount Routes (support both /api/auth and /auth)
+app.use(['/api/auth', '/auth'], authLimiter, authRouter);
+app.use(['/api', '/'], syncRouter);
 
 // Global Error Handler
 app.use((err, req, res, next) => {
@@ -63,7 +68,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   initDb();
   app.listen(PORT, () => {
     console.log(`[sankalp-server] Running on http://localhost:${PORT}`);

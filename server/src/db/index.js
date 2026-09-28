@@ -5,7 +5,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const dbPath = process.env.DATABASE_PATH || 'data/sankalp.db';
+const isVercel = !!process.env.VERCEL;
+const defaultDbPath = isVercel ? '/tmp/sankalp.db' : 'data/sankalp.db';
+const dbPath = (process.env.DATABASE_PATH && !isVercel) ? process.env.DATABASE_PATH : defaultDbPath;
 
 // Ensure data folder exists if file database is used
 if (dbPath !== ':memory:') {
