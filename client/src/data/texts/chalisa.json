@@ -1,0 +1,30 @@
+{
+  "id": "hanuman-chalisa",
+  "title": "Shri Hanuman Chalisa",
+  "verses": [
+    {
+      "n": 1,
+      "devanagari": "॥ श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि ॥",
+      "transliteration": "shree guru charana saroja raja nija manu mukuru sudhaari",
+      "meaning": "Cleansing the mirror of my mind with the sacred dust of the Guru's lotus feet..."
+    },
+    {
+      "n": 2,
+      "devanagari": "॥ बरनउँ रघुबर बिमल जसु जो दायकु फल चारि ॥",
+      "transliteration": "baranau raghubara bimala jasu jo daayaku phala chaari",
+      "meaning": "I recount the pure glory of the Lord of Raghu dynasty, bestower of life's four fruits..."
+    },
+    {
+      "n": 3,
+      "devanagari": "॥ बुद्धिहीन तनु जानिके सुमिरौ पवन कुमार ॥",
+      "transliteration": "buddhi heena tanu jaanike sumirau pawana kumaara",
+      "meaning": "Knowing my intellect to be lacking, I meditate upon you, O Son of the Wind..."
+    },
+    {
+      "n": 4,
+      "devanagari": "॥ बल बुधि बिद्या देहु मोहि हरहु कलेस बिकार ॥",
+      "transliteration": "bala budhi bidya dehu mohi harahu kalesa bikaara",
+      "meaning": "Bestow strength, wisdom, and clarity; remove all distress and afflictions."
+    }
+  ]
+}

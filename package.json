@@ -1,0 +1,19 @@
+{
+  "name": "sankalp-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm --prefix client install && npm --prefix server install",
+    "dev": "concurrently -n \"client,server\" -c \"cyan,magenta\" \"npm --prefix client run dev\" \"npm --prefix server run dev\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix client run test && npm --prefix server run test",
+    "test:client": "npm --prefix client run test",
+    "test:server": "npm --prefix server run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.4"
+  }
+}

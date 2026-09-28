@@ -1,0 +1,307 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #FFF8EE;
+    --sf: #FFFFFF;
+    --pr: #E8590C;
+    --pd: #C2410C;
+    --tx: #4A1D12;
+    --mt: #8A6A5C;
+    --ok: #3F7D3A;
+    --ms: #B4846C;
+    --ln: #EBD9C5;
+    --sh: 0 2px 10px rgba(74, 29, 18, 0.08);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1A110D;
+      --sf: #251912;
+      --pr: #F0793A;
+      --pd: #F0793A;
+      --tx: #F6E9DA;
+      --mt: #C4A896;
+      --ok: #7DBB77;
+      --ms: #D2A58C;
+      --ln: #3A281E;
+      --sh: none;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1A110D;
+    --sf: #251912;
+    --pr: #F0793A;
+    --pd: #F0793A;
+    --tx: #F6E9DA;
+    --mt: #C4A896;
+    --ok: #7DBB77;
+    --ms: #D2A58C;
+    --ln: #3A281E;
+    --sh: none;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--tx);
+    font-family: Inter, "Noto Sans", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  h1, h2, h3, .serif {
+    font-family: "Noto Serif", "Tiro Devanagari Hindi", Georgia, serif;
+    font-weight: 600;
+  }
+
+  button, a {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--pr);
+    outline-offset: 2px;
+  }
+}
+
+/* Custom reusable components aligned with design board */
+.card {
+  background: var(--sf);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--sh);
+  border: 1px solid var(--ln);
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  width: 100%;
+  border-radius: 999px;
+  border: 0;
+  background: var(--pr);
+  color: #fff;
+  font-weight: 600;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  width: 100%;
+  border-radius: 999px;
+  border: 1.5px solid var(--pr);
+  background: transparent;
+  color: var(--pr);
+  font-weight: 600;
+}
+
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  background: transparent;
+  color: var(--pr);
+  font-weight: 600;
+  border: 0;
+}
+
+.btn-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  width: 100%;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ln);
+  color: var(--mt);
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.chip {
+  border: 1px solid var(--ln);
+  border-radius: 999px;
+  padding: 8px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sf);
+  font-size: 14px;
+  color: var(--tx);
+  transition: all 0.15s ease;
+}
+.chip.on {
+  border-color: var(--pr);
+  color: var(--pr);
+  background: color-mix(in srgb, var(--pr) 12%, var(--sf));
+  font-weight: 600;
+}
+
+.pill {
+  border: 1px solid var(--ln);
+  background: var(--sf);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.pill[aria-pressed="true"], .pill.on {
+  background: var(--pr);
+  color: #fff;
+  border-color: var(--pr);
+  font-weight: 600;
+}
+
+.chk {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 2px solid var(--mt);
+  flex: none;
+  display: grid;
+  place-items: center;
+  transition: all 0.15s;
+}
+.chk.on {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+}
+
+.stp {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ln);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  background: var(--bg);
+  color: var(--tx);
+  flex: none;
+  transition: background 0.15s;
+}
+.stp:hover {
+  border-color: var(--pr);
+}
+.stp:active {
+  transform: scale(0.95);
+}
+
+/* Day tiles for 40-day Journey grid */
+.d-tile {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  position: relative;
+  border: 1.5px solid transparent;
+  background: var(--sf);
+  transition: all 0.15s ease;
+}
+.d-tile.completed {
+  background: var(--ok);
+  color: #fff;
+}
+.d-tile.missed {
+  background: color-mix(in srgb, var(--ms) 25%, var(--sf));
+  color: var(--ms);
+  border: 1.5px dashed var(--ms);
+}
+.d-tile.today {
+  border-color: var(--pr);
+  color: var(--pr);
+  font-weight: 700;
+  border-radius: 50%;
+}
+.d-tile.upcoming {
+  opacity: 0.45;
+}
+.d-tile.final {
+  border: 1.5px solid var(--pr);
+  color: var(--pr);
+  border-radius: 12px 12px 50% 50%;
+}
+
+.sheet {
+  background: var(--sf);
+  border-radius: 24px 24px 0 0;
+  padding: 12px 16px 20px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--ln);
+}
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 9px;
+  background: var(--ln);
+  margin: 0 auto 12px;
+}
+
+.opt {
+  border: 1.5px solid var(--ln);
+  border-radius: 16px;
+  padding: 12px 14px;
+  transition: all 0.15s;
+}
+.opt.on {
+  border-color: var(--pr);
+  background: color-mix(in srgb, var(--pr) 8%, var(--sf));
+}
+
+.tap-counter {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: radial-gradient(circle, var(--sf) 60%, color-mix(in srgb, var(--pr) 14%, var(--sf)));
+  border: 2px solid var(--pr);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tap-counter {
+    transition: transform 0.15s ease-out;
+  }
+  .tap-counter:active {
+    transform: scale(0.97);
+  }
+}
+
+.dev {
+  font-family: "Noto Serif Devanagari", "Tiro Devanagari Hindi", serif;
+  font-size: 20px;
+  line-height: 1.7;
+}
